@@ -20,6 +20,16 @@ export default defineConfig({
         } catch (error) {
           console.warn('⚠ Impossible de copier .htaccess:', error.message)
         }
+        // Copier vercel.json vers dist après le build
+        try {
+          copyFileSync(
+            join(__dirname, 'vercel.json'),
+            join(__dirname, 'dist', 'vercel.json')
+          )
+          console.log('✓ vercel.json copié dans dist/')
+        } catch (error) {
+          console.warn('⚠ Impossible de copier vercel.json:', error.message)
+        }
       },
     },
   ],
